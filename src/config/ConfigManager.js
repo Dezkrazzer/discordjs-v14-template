@@ -153,11 +153,19 @@ class ConfigManager {
 
 	/** @returns {string|null} The dev/test guild ID for slash command registration */
 	get devGuildId() {
-		return this.get("DEV_GUILD_ID", null);
+		return process.env.DEV_GUILD_ID?.trim() || this.get("DEV_GUILD_ID", null);
 	}
 
 	/** @returns {string[]} Array of developer user IDs */
 	get devIds() {
+		const envValue = process.env.DEV_IDS?.trim();
+		if (envValue) {
+			return envValue
+				.split(",")
+				.map((id) => id.trim())
+				.filter(Boolean);
+		}
+
 		return this.get("DEV_IDS", []);
 	}
 

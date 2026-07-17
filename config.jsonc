@@ -6,13 +6,6 @@
 	//   - Debug-level log messages are displayed in the console
 	"DEV_MODE": false,
 
-	// The guild ID where slash commands are registered in dev mode (instant updates).
-	// In production (DEV_MODE: false), commands register globally (up to 1h propagation).
-	"DEV_GUILD_ID": "954173179042091028",
-
-	// Array of Discord user IDs that can use devOnly commands.
-	"DEV_IDS": ["735403745998798902"],
-
 	// ─── Timezone Settings ─────────────────────────────────────────────────────
 	"DEFAULT_TIMEZONE": "Asia/Jakarta",
 	"DEFAULT_TIMEZONE_FORMAT": "ddd MMM Do YYYY HH:mm:ss",
