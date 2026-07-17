@@ -196,6 +196,16 @@ class ConfigManager {
 	get language() {
 		return this.get("LANGUAGE", "en");
 	}
+
+	/** @returns {string} The timezone used for date formatting */
+	get defaultTimezone() {
+		return this.get("DEFAULT_TIMEZONE", "UTC");
+	}
+
+	/** @returns {string} The timezone display format */
+	get defaultTimezoneFormat() {
+		return this.get("DEFAULT_TIMEZONE_FORMAT", "ddd MMM Do YYYY HH:mm:ss");
+	}
 }
 
 module.exports = ConfigManager;

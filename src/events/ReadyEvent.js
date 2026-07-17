@@ -55,7 +55,7 @@ class ClientReadyEvent extends BaseEvent {
 
 		// ── Log ready confirmation ───────────────────────────────────────────
 		client.logger.success(
-			`> ✅ • ${client.user.username} is online and ready to serve!`
+			`> ✅ • ${client.user.username} (${client.user.id}) is now online in ${client.guilds.cache.size} guilds, serving ${client.users.cache.size} users.`
 		);
 	}
 }

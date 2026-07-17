@@ -200,7 +200,7 @@ class CommandManager {
 		try {
 			await command.execute(context);
 			this.client.logger.cmd(
-				`> ${context.author.tag} used "${command.name}" in ${context.guild?.name ?? "DM"}`
+				`> ${context.author.tag} (${context.author.id}) used "${command.name}" in ${context.guild?.name ?? "DM"} (${context.guild?.id ?? "DM"})`
 			);
 		} catch (error) {
 			this.client.logger.error(
