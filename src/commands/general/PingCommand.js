@@ -1,4 +1,5 @@
 const BaseCommand = require("../../structures/BaseCommand.js");
+const Discord = require("discord.js");
 
 class PingCommand extends BaseCommand {
 	constructor(client) {
@@ -9,7 +10,9 @@ class PingCommand extends BaseCommand {
 			cooldown: 5,
 			devOnly: false,
 			usage: "",
-			slash: true,
+			slash: new Discord.SlashCommandBuilder()
+				.setName("ping")
+				.setDescription("Check the bot's websocket latency."),
 			category: "General",
 		});
 	}
@@ -18,12 +21,39 @@ class PingCommand extends BaseCommand {
 	 * @param {import('../../structures/CommandContext.js')} ctx
 	 */
 	async execute(ctx) {
-		const ping = ctx.client.ws.ping;
-		const description = `My current websocket latency is **${ping}ms**.`;
+		const m = await ctx.client.embedManager.replyToContext(
+			ctx,
+			"info",
+			"Please wait... we're pinging the bot's websocket latency."
+		);
 
-		await ctx.client.embedManager.replyToContext(ctx, "info", description, {
-			title: "🏓 Pong!",
-		});
+		const latency = m.createdTimestamp - ctx.createdTimestamp;
+		const ws = ctx.client.ws.ping;
+
+		const embed = new Discord.EmbedBuilder()
+			.setColor(ctx.client.config.embedColors.PRIMARY)
+			.addFields(
+				{
+					name: "🛜 Latency",
+					value: `**\`${latency} ms\`**`,
+					inline: true
+				},
+				{
+					name: "📶 WebSocket",
+					value: `**\`${ws} ms\`**`,
+					inline: true
+				}
+			)
+			.setFooter({
+				text: `${ctx.client.user.tag} Ping`,
+				iconURL: ctx.client.user.avatarURL({ size: 4096 }),
+			})
+			.setTimestamp();
+
+		setTimeout(() => {
+			m.edit({ embeds: [embed] });
+		}, 2000);
+
 	}
 }
 

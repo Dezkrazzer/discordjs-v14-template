@@ -22,11 +22,11 @@ class HelpCommand extends BaseCommand {
             contextChat: null,
             contextUser: null,
             disable: false,
+            category: "General",
         });
     }
 
     /**
-     *
      * @param {import('../structures/CommandContext')} ctx
      */
     async execute(ctx) {

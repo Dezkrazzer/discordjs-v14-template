@@ -65,6 +65,9 @@ class CommandContext {
 		/** @type {import('discord.js').Client} The client instance */
 		this.client = source.client;
 
+		/** @type {number} Timestamp when the command context was created */
+		this.createdTimestamp = source.createdTimestamp ?? Date.now();
+
 		/** @type {string} The prefix used to invoke the command */
 		this.prefix = prefix;
 
