@@ -1,0 +1,51 @@
+const BaseCommand = require("../structures/BaseCommand.js");
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * TemplateCommand — Copy this file when creating a new command
+ * ═══════════════════════════════════════════════════════════════════════════════
+ *
+ * Use this file as a starting point for a new command.
+ * Replace the placeholders below with your real command name,
+ * description, aliases, cooldown, and command logic.
+ * ═══════════════════════════════════════════════════════════════════════════════
+ */
+class TemplateCommand extends BaseCommand {
+	constructor(client) {
+		super(client, {
+			name: "template",
+			description: "Template command. Replace this with your command description.",
+			aliases: ["example"],
+			cooldown: 5,
+			devOnly: false,
+			usage: "",
+			slash: true,
+			contextChat: null,
+			contextUser: null,
+			disable: false,
+		});
+	}
+
+	/**
+	 * Executes the command.
+	 * Replace the example response with your own logic.
+	 *
+	 * @param {import('../structures/CommandContext')} ctx - Unified command context
+	 */
+	async execute(ctx) {
+		const colors = ctx.client.config.embedColors;
+
+		await ctx.reply({
+			embeds: [
+				new EmbedBuilder()
+					.setTitle("Template Command")
+					.setDescription(
+						"Replace this message with the behavior you want for your new command."
+					)
+					.setColor(colors.PRIMARY),
+		],
+		});
+	}
+}
+
+module.exports = TemplateCommand;

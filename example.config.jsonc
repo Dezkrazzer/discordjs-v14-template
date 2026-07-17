@@ -1,0 +1,68 @@
+{
+	// ─── Developer Mode ────────────────────────────────────────────────────────
+	// When true:
+	//   - Verbose error messages are shown (stack traces in chat)
+	//   - Slash commands register to DEV_GUILD_ID instead of globally
+	//   - Debug-level log messages are displayed in the console
+	"DEV_MODE": false,
+
+	// The guild ID where slash commands are registered in dev mode (instant updates).
+	// In production (DEV_MODE: false), commands register globally (up to 1h propagation).
+	"DEV_GUILD_ID": "",
+
+	// Array of Discord user IDs that can use devOnly commands.
+	"DEV_IDS": [ ],
+
+	// ─── Timezone Settings ─────────────────────────────────────────────────────
+	"DEFAULT_TIMEZONE": "Asia/Jakarta",
+	"DEFAULT_TIMEZONE_FORMAT": "ddd MMM Do YYYY HH:mm:ss",
+
+	// ─── Command Settings ──────────────────────────────────────────────────────
+	// Default prefix for text-based (message) commands.
+	"MAIN_PREFIX": "!",
+
+	// URL for uploading long command outputs (like eval results).
+	"HASTEBIN_URL": "https://bin.acronet.work",
+
+	// Set to false to completely disable slash command registration and listening.
+	"ENABLE_SLASH_COMMANDS": true,
+
+	// ─── Language ──────────────────────────────────────────────────────────────
+	"LANGUAGE": "en",
+
+	// ─── Embed Colors ──────────────────────────────────────────────────────────
+	// Hex color codes used for embeds throughout the bot.
+	"EMBED_COLORS": {
+		"PRIMARY": "#5865F2",
+		"SUCCESS": "#57F287",
+		"WARNING": "#FEE75C",
+		"ERROR": "#ED4245"
+	},
+
+	// ─── Embed Emojis ─────────────────────────────────────────────────────────
+	// Emoji strings used in the EmbedManager for typed responses.
+	// You can use custom Discord emojis here (e.g., "<:check:123456789>").
+	"EMBED_EMOJIS": {
+		"SUCCESS": "✅",
+		"ERROR": "❌",
+		"WARNING": "⚠️",
+		"INFO": "ℹ️",
+		"LOADING": "⏳"
+	},
+
+	// ─── Sharding ──────────────────────────────────────────────────────────────
+	// Minimum guild count before the bot auto-enables sharding.
+	// Below this threshold, the bot runs in a single process.
+	"SHARD_THRESHOLD": 500,
+
+	// ─── Bot Status Configuration ──────────────────────────────────────────────
+	/*
+		STATUS: online, idle, dnd, invisible
+		TYPE: PLAYING, STREAMING, LISTENING, WATCHING, COMPETING
+	*/
+	"BOT_STATUS": {
+		"STATUS": "online",
+		"TYPE": "WATCHING",
+		"ACTIVITY": "Bot Template | by DezkrazzeR"
+	}
+}
