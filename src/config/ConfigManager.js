@@ -36,6 +36,19 @@ class ConfigManager {
 		}
 
 		this.#loadConfig();
+
+		// Make config dynamic by watching the file
+		const configPath = path.resolve(process.cwd(), "config.jsonc");
+		fs.watchFile(configPath, { interval: 1000 }, (curr, prev) => {
+			if (curr.mtimeMs !== prev.mtimeMs) {
+				try {
+					console.log("[ConfigManager] Config file changed. Reloading...");
+					this.#loadConfig();
+				} catch (error) {
+					console.error("[ConfigManager] Failed to reload config:", error.message);
+				}
+			}
+		});
 	}
 
 	/**

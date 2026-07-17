@@ -15,7 +15,7 @@ class PingCommand extends BaseCommand {
 	}
 
 	/**
-	 * @param {import('../../structures/CommandContext')} ctx
+	 * @param {import('../../structures/CommandContext.js')} ctx
 	 */
 	async execute(ctx) {
 		const ping = ctx.client.ws.ping;
