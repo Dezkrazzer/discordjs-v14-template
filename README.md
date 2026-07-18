@@ -1,6 +1,11 @@
 <div align="center">
   <h1>🤖 Discord.js v14 Bot Template</h1>
   <p>A professional, highly customizable, and feature-rich Discord Bot Template built with Discord.js v14.</p>
+  
+  <img src="https://img.shields.io/badge/Discord.js-v14-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord.js v14">
+  <img src="https://img.shields.io/badge/Node.js-16.14%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/javascript-2023-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript">
+  <img src="https://img.shields.io/badge/License-MIT-red?style=for-the-badge" alt="License">
 </div>
 
 ---
@@ -21,12 +26,6 @@
 ## 📝 Description
 
 This template provides a robust foundation for building Discord bots using **[Discord.js v14](https://discord.js.org/)**. It is designed with modularity, scalability, and developer experience in mind. Whether you are building a simple utility bot or a complex multi-bot system that requires sharding, this template comes pre-configured with essential managers, a clean structure, and extensive configuration options to kickstart your development.
-
-<div align="center">
-  <img src="https://img.shields.io/badge/Discord.js-v14-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord.js v14">
-  <img src="https://img.shields.io/badge/Node.js-16.14%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
-  <img src="https://img.shields.io/badge/License-MIT-red?style=for-the-badge" alt="License">
-</div>
 
 ---
 
@@ -127,6 +126,7 @@ npm run lint
 ├── package.json          # Project metadata and scripts
 ├── src/
 │   ├── bot.js            # Main bot entry point (Client initialization)
+│   ├── server.js         # Express web server
 │   ├── index.js          # Sharding & Multi-bot manager entry point
 │   ├── commands/         # Command modules (General, Developer, etc.)
 │   ├── events/           # Event listeners
@@ -138,10 +138,10 @@ npm run lint
 
 ## 👤 Author & Copyright
 
-- **Author:** Dezkrazzer
-- **GitHub:** [Dezkrazzer](https://github.com/Dezkrazzer)
+- **Author:** [Dezkrazzer](https://lzuardiai.my.id)
+- **Co-Author:** [Acro Network Development](https://acronet.work)
 
-© 2026 Dezkrazzer. All rights reserved.
+© 2026 Dezkrazzer & Acro Network Development. All rights reserved.
 
 ---
 
