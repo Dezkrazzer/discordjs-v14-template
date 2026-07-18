@@ -3,8 +3,8 @@
   <p>A professional, highly customizable, and feature-rich Discord Bot Template built with Discord.js v14.</p>
   
   <img src="https://img.shields.io/badge/Discord.js-v14-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord.js v14">
-  <img src="https://img.shields.io/badge/Node.js-16.14%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
-  <img src="https://img.shields.io/badge/javascript-2023-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript">
+  <img src="https://img.shields.io/badge/Node.js-24.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript">
   <img src="https://img.shields.io/badge/License-MIT-red?style=for-the-badge" alt="License">
 </div>
 
@@ -48,7 +48,7 @@ This template provides a robust foundation for building Discord bots using **[Di
 Follow these steps to get your development environment set up:
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (v16.14.0 or higher is required for Discord.js v14).
+- [Node.js](https://nodejs.org/) (v24.x or latest recommended).
 - [Git](https://git-scm.com/) (optional, for cloning the repository).
 
 ### Setup Steps
