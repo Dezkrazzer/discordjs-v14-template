@@ -29,6 +29,9 @@
  */
 
 require("dotenv").config();
+const Logger = require("./utils/logger.js");
+global.logger = new Logger("System");
+require("./server.js");
 
 const path = require("node:path");
 const ConfigManager = require("./config/ConfigManager.js");

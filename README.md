@@ -22,6 +22,12 @@
 
 This template provides a robust foundation for building Discord bots using **[Discord.js v14](https://discord.js.org/)**. It is designed with modularity, scalability, and developer experience in mind. Whether you are building a simple utility bot or a complex multi-bot system that requires sharding, this template comes pre-configured with essential managers, a clean structure, and extensive configuration options to kickstart your development.
 
+<div align="center">
+  <img src="https://img.shields.io/badge/Discord.js-v14-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord.js v14">
+  <img src="https://img.shields.io/badge/Node.js-16.14%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/License-MIT-red?style=for-the-badge" alt="License">
+</div>
+
 ---
 
 ## ✨ Features
@@ -30,7 +36,8 @@ This template provides a robust foundation for building Discord bots using **[Di
 - **Hybrid Command System**: Seamlessly supports both Slash Commands (`/`) and traditional Prefix Commands (`!`).
 - **Multi-Bot Support**: Run multiple bot instances simultaneously from a single process using comma-separated tokens.
 - **Automatic Sharding**: Built-in support to auto-enable sharding once your bot reaches a configurable guild threshold.
-- **Advanced Embed Manager**: A centralized system for building beautiful, consistent embeds with predefined colors, emojis, and auto-deletion capabilities.
+- **Advanced Embed Manager**: A centralized system for building beautiful, consistent embeds with predefined colors, emojis, and auto-deletion capabilities for temporary messages and cooldowns.
+- **Express Web Server**: Integrated lightweight Express server for easy uptime monitoring and ping tracking.
 - **Developer Mode**: Quickly test commands in a specific test guild, restrict command access to developers, and get verbose error logging during development.
 - **Easy Configuration**: Highly customizable via `.env` and `config.jsonc` files without needing to touch core code.
 - **Modern Tooling**: Pre-configured with [Biome](https://biomejs.dev/) for blazing-fast formatting and linting.

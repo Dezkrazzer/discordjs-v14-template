@@ -22,6 +22,9 @@
 
 require("dotenv").config();
 
+const Logger = require("./utils/logger.js");
+if (!global.logger) global.logger = new Logger("System");
+
 const BotClient = require("./structures/BotClient.js");
 
 (async () => {
