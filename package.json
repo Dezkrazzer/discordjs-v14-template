@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/Dezkrazzer/discordjs-v14-template.git"
   },
-  "keywords": [],
+  "keywords": ["dezkrazzer","discord.js", "discord", "bot", "template", "v14", "nodejs", "javascript", "discordjs", "discordjs-v14", "discordjs-v14-template"],
   "author": "Dezkrazzer",
   "license": "MIT",
   "type": "commonjs",
