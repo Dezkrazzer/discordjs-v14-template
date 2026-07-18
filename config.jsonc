@@ -20,9 +20,6 @@
 	// Set to false to completely disable slash command registration and listening.
 	"ENABLE_SLASH_COMMANDS": true,
 
-	// ─── Language ──────────────────────────────────────────────────────────────
-	"LANGUAGE": "en",
-
 	// ─── Embed Colors ──────────────────────────────────────────────────────────
 	// Hex color codes used for embeds throughout the bot.
 	"EMBED_COLORS": {
