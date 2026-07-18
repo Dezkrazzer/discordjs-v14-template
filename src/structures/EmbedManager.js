@@ -186,7 +186,9 @@ class EmbedManager {
 		// ── Auto-delete after specified duration ────────────────────────────
 		if (options.deleteAfter && options.deleteAfter > 0) {
 			setTimeout(() => {
-				message.delete().catch(() => {});
+				if (message && typeof message.delete === "function") {
+					message.delete().catch(() => {});
+				}
 			}, options.deleteAfter);
 		}
 
@@ -247,13 +249,11 @@ class EmbedManager {
 		}
 
 		// ── Auto-delete after specified duration ────────────────────────────
-		// Note: Ephemeral messages cannot be deleted by the bot, so skip
-		if (options.deleteAfter && options.deleteAfter > 0 && !options.ephemeral) {
+		if (options.deleteAfter && options.deleteAfter > 0) {
 			setTimeout(() => {
-				// For interactions, fetch the reply message to delete it
 				if (isInteraction) {
 					source.deleteReply().catch(() => {});
-				} else if (sentMessage?.deletable) {
+				} else if (sentMessage && typeof sentMessage.delete === "function") {
 					sentMessage.delete().catch(() => {});
 				}
 			}, options.deleteAfter);

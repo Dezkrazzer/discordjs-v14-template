@@ -25,7 +25,7 @@ class StatsCommand extends BaseCommand {
     }
 
     /**
-     * @param {import('../structures/CommandContext')} ctx - Unified command context
+     * @param {import('../../structures/CommandContext')} ctx - Unified command context
      */
     async execute(ctx) {
         generateEmbed(ctx).then(embed => {

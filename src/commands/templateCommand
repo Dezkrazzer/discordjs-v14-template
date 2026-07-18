@@ -28,7 +28,7 @@ class TemplateCommand extends BaseCommand {
 	}
 
 	/**
-	 * @param {import('../structures/CommandContext')} ctx - Unified command context
+	 * @param {import('../../structures/CommandContext')} ctx
 	 */
 	async execute(ctx) {
 		const colors = ctx.client.config.embedColors;

@@ -27,7 +27,7 @@ class HelpCommand extends BaseCommand {
     }
 
     /**
-     * @param {import('../structures/CommandContext')} ctx
+     * @param {import('../../structures/CommandContext')} ctx
      */
     async execute(ctx) {
         const targetCommand = ctx.isInteraction ? ctx.getOption("command") : ctx.args[0];
@@ -64,7 +64,7 @@ class HelpCommand extends BaseCommand {
         } else {
             const command = ctx.client.commandManager.resolveCommand(targetCommand);
             if (!command) {
-                return ctx.client.embedManager.replyToContext(ctx, "error", `Command \`${targetCommand}\` not found.`);
+                return ctx.client.embedManager.replyToContext(ctx, "error", `Command \`${targetCommand}\` not found.`, { deleteAfter: 5000 });
             }
 
             const embed = new Discord.EmbedBuilder()

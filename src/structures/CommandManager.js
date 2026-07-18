@@ -177,7 +177,7 @@ class CommandManager {
 					context,
 					"error",
 					"This command is restricted to bot developers only.",
-					{ ephemeral: true }
+					{ ephemeral: true, deleteAfter: 5000 }
 				);
 				return;
 			}
@@ -186,11 +186,11 @@ class CommandManager {
 		// Cooldown check
 		const remainingMs = this.checkCooldown(context.author.id, command);
 		if (remainingMs > 0) {
-			const expiryUnix = Math.floor((Date.now() + remainingMs) / 1000);
+			const seconds = Math.ceil(remainingMs / 1000);
 			await this.client.embedManager.replyToContext(
 				context,
 				"warning",
-				`Please wait! You can use \`${command.name}\` again <t:${expiryUnix}:R>.`,
+				`Please wait! You can use \`${command.name}\` again in **${seconds}** second(s).`,
 				{ ephemeral: true, deleteAfter: remainingMs }
 			);
 			return;

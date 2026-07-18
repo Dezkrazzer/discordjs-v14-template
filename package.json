@@ -34,6 +34,6 @@
     "util": "^0.12.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.4"
+    "@biomejs/biome": "^2.5.4"
   }
 }

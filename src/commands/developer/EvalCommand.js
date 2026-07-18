@@ -36,7 +36,8 @@ class EvalCommand extends BaseCommand {
 				return await client.embedManager.replyToContext(
 					ctx,
 					"warning",
-					"What is your **JavaScript Code**?"
+					"What is your **JavaScript Code**?",
+					{ deleteAfter: 5000 }
 				);
 			}
 
