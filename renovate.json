@@ -1,6 +1,22 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:recommended",
+    ":preserveSemverRanges",
+    ":maintainLockFilesWeekly"
+  ],
+  "labels": ["dependencies"],
+  "schedule": ["at any time"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch"
+    },
+    {
+      "matchPackageNames": ["discord.js"],
+      "groupName": "discord.js updates"
+    }
+  ],
+  "prConcurrentLimit": 5
 }
