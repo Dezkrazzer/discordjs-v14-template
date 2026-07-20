@@ -1,5 +1,6 @@
 const axios = require("axios").default;
 const util = require("util");
+const Discord = require("discord.js");
 const BaseCommand = require("../../structures/BaseCommand.js");
 
 function clean(text) {
@@ -23,12 +24,16 @@ class EvalCommand extends BaseCommand {
 	}
 
 	async execute(ctx) {
+		const client = ctx.client;
+		// Remove if statement if you want to allow eval on all bots in multi-bot setup
+		if (client.multiBotManager && client.label !== client.multiBotManager.primaryLabel) {
+			return;
+		}
 		// biome-ignore lint/correctness/noUnusedVariables: Available for eval scope
 		const msg = ctx.raw;
 		// biome-ignore lint/correctness/noUnusedVariables: Available for eval scope
 		const message = ctx.raw;
 		const bot = ctx.client;
-		const client = ctx.client;
 		let code = ctx.isMessage ? ctx.args.join(" ") : ctx.getFullArgs();
 
 		try {
@@ -83,15 +88,29 @@ class EvalCommand extends BaseCommand {
 					],
 				});
 			} else {
-				await client.embedManager.replyToContext(ctx, "success", `\`\`\`js\n${output}\n\`\`\``, {
-					title: "Code Evaluated",
-				});
+				const embed = new Discord.EmbedBuilder()
+					.setTitle("Output")
+					.setDescription(`\`\`\`js\n${output}\n\`\`\``)
+					.setColor(ctx.client.config.embedColors.SUCCESS)
+					.setFooter({
+						text: `Requested by ${ctx.author.username}`,
+						iconURL: ctx.author.displayAvatarURL({ size: 4096, dynamic: true }),
+					})
+					.setTimestamp();
+				await ctx.followUp({ embeds: [embed] });
 			}
 		} catch (e) {
 			const error = clean(e);
-			await client.embedManager.replyToContext(ctx, "error", `\`\`\`js\n${error}\n\`\`\``, {
-				title: "Evaluation Error",
-			});
+			const embed = new Discord.EmbedBuilder()
+					.setTitle("Error")
+					.setDescription(`\`\`\`js\n${error}\n\`\`\``)
+					.setColor(ctx.client.config.embedColors.ERROR)
+					.setFooter({
+						text: `Requested by ${ctx.author.username}`,
+						iconURL: ctx.author.displayAvatarURL({ size: 4096, dynamic: true }),
+					})
+					.setTimestamp();
+			await ctx.followUp({ embeds: [embed] });
 		}
 	}
 }
