@@ -1,9 +1,9 @@
-const BaseCommand = require("../../structures/BaseCommand.js");
-const Discord = require("discord.js");
-const cpuStat = require("cpu-stat");
-const momentTz = require("moment-timezone");
-const os = require("os");
-require("moment-duration-format");
+import BaseCommand from "../../structures/BaseCommand.js";
+import Discord, { version as djsVersion } from "discord.js";
+import cpuStat from "cpu-stat";
+import momentTz from "moment-timezone";
+import os from "os";
+import "moment-duration-format";
 
 class StatsCommand extends BaseCommand {
     constructor(client) {
@@ -94,7 +94,7 @@ async function generateEmbed(ctx) {
                         value: [
                             "```asciidoc",
                             `• Langs :: Node.js ${process.version}`,
-                            `• Libs :: Discord.js v${require("discord.js").version}`,
+                            `• Libs :: Discord.js v${djsVersion}`,
                             "```",
                         ].join("\n"),
                         inline: false
@@ -154,4 +154,4 @@ function getTotalBotsLogin(client) {
     return total;
 }
 
-module.exports = StatsCommand;
+export default StatsCommand;

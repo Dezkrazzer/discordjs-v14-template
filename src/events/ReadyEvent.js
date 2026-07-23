@@ -1,5 +1,5 @@
-const { ActivityType } = require("discord.js");
-const BaseEvent = require("../structures/BaseEvent.js");
+import { ActivityType } from "discord.js";
+import BaseEvent from "../structures/BaseEvent.js";
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
@@ -60,4 +60,4 @@ class ClientReadyEvent extends BaseEvent {
 	}
 }
 
-module.exports = ClientReadyEvent;
+export default ClientReadyEvent;

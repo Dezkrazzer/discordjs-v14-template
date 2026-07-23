@@ -1,5 +1,5 @@
-const BotClient = require("./BotClient.js");
-const Logger = require("../utils/logger.js");
+import BotClient from "./BotClient.js";
+import Logger from "../utils/logger.js";
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
@@ -180,4 +180,4 @@ class MultiBotManager {
 	}
 }
 
-module.exports = MultiBotManager;
+export default MultiBotManager;

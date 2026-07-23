@@ -1,7 +1,12 @@
-const fs = require("node:fs");
-const path = require("node:path");
-const { Collection } = require("discord.js");
-const BaseCommand = require("./BaseCommand.js");
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { Collection, REST, Routes } from "discord.js";
+import { pathToFileURL } from "node:url";
+import BaseCommand from "./BaseCommand.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
@@ -39,7 +44,7 @@ class CommandManager {
 			for (const file of files) {
 				try {
 					const filePath = path.join(categoryPath, file);
-					const CommandClass = require(filePath);
+					const { default: CommandClass } = await import(pathToFileURL(filePath).href);
 
 					if (typeof CommandClass !== "function") {
 						this.client.logger.warn(`> ⚠️ • Skipping "${file}": export is not a class`);
@@ -85,7 +90,6 @@ class CommandManager {
 
 		if (!config.slashEnabled) return;
 
-		const { REST, Routes } = require("discord.js");
 		const slashData = [];
 
 		for (const [, command] of this.client.commands) {
@@ -221,4 +225,4 @@ class CommandManager {
 	}
 }
 
-module.exports = CommandManager;
+export default CommandManager;

@@ -1,7 +1,7 @@
-const axios = require("axios").default;
-const util = require("util");
-const Discord = require("discord.js");
-const BaseCommand = require("../../structures/BaseCommand.js");
+import axios from "axios";
+import util from "util";
+import Discord from "discord.js";
+import BaseCommand from "../../structures/BaseCommand.js";
 
 function clean(text) {
 	if (typeof text === "string")
@@ -115,4 +115,4 @@ class EvalCommand extends BaseCommand {
 	}
 }
 
-module.exports = EvalCommand;
+export default EvalCommand;

@@ -28,13 +28,17 @@
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
-require("dotenv").config();
-const Logger = require("./utils/logger.js");
+import "dotenv/config";
+import Logger from "./utils/logger.js";
 global.logger = new Logger("System");
-require("./server.js");
+import "./server.js";
 
-const path = require("node:path");
-const ConfigManager = require("./config/ConfigManager.js");
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import ConfigManager from "./config/ConfigManager.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /** @type {ConfigManager} */
 const config = ConfigManager.getInstance();
@@ -155,7 +159,7 @@ async function fetchGuildCount(token) {
 			`\n🤖 Multi-Bot Mode — Starting ${tokens.length} bot instances...\n`
 		);
 
-		const MultiBotManager = require("./structures/MultiBotManager.js");
+		const { default: MultiBotManager } = await import("./structures/MultiBotManager.js");
 		const manager = new MultiBotManager(tokens);
 
 		// ── Graceful shutdown on SIGINT/SIGTERM ───────────────────────────
@@ -188,7 +192,7 @@ async function fetchGuildCount(token) {
 				"Launching ShardingManager...\n"
 			);
 
-			const { ShardingManager } = require("discord.js");
+			const { ShardingManager } = await import("discord.js");
 
 			const manager = new ShardingManager(path.join(__dirname, "bot.js"), {
 				token: tokens[0],
@@ -231,7 +235,7 @@ async function fetchGuildCount(token) {
 				"Starting single-process client...\n"
 			);
 
-			const BotClient = require("./structures/BotClient.js");
+			const { default: BotClient } = await import("./structures/BotClient.js");
 			const client = new BotClient(tokens[0]);
 
 			// ── Graceful shutdown ────────────────────────────────────────

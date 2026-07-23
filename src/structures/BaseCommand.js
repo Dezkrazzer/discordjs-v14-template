@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ContextMenuCommandBuilder, ApplicationCommandType } = require("discord.js");
+import { SlashCommandBuilder, ContextMenuCommandBuilder, ApplicationCommandType } from "discord.js";
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
@@ -84,4 +84,4 @@ class BaseCommand {
 	}
 }
 
-module.exports = BaseCommand;
+export default BaseCommand;

@@ -1,6 +1,6 @@
-const BaseCommand = require("../../structures/BaseCommand.js");
-const Discord = require("discord.js");
-const fs = require("node:fs");
+import BaseCommand from "../../structures/BaseCommand.js";
+import Discord from "discord.js";
+import fs from "node:fs";
 
 class HelpCommand extends BaseCommand {
     constructor(client) {
@@ -95,4 +95,4 @@ class HelpCommand extends BaseCommand {
     }
 }
 
-module.exports = HelpCommand;
+export default HelpCommand;

@@ -1,5 +1,5 @@
-const BaseCommand = require("../../structures/BaseCommand.js");
-const Discord = require("discord.js");
+import BaseCommand from "../../structures/BaseCommand.js";
+import Discord from "discord.js";
 
 class PingCommand extends BaseCommand {
 	constructor(client) {
@@ -57,4 +57,4 @@ class PingCommand extends BaseCommand {
 	}
 }
 
-module.exports = PingCommand;
+export default PingCommand;

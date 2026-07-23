@@ -29,7 +29,7 @@
   ],
   "author": "Dezkrazzer",
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Dezkrazzer/discordjs-v14-template/issues"
   },

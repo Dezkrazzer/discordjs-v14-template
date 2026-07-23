@@ -1,4 +1,4 @@
-const BaseCommand = require("../../structures/BaseCommand.js");
+import BaseCommand from "../../structures/BaseCommand.js";
 
 class SayCommand extends BaseCommand {
     constructor(client) {
@@ -41,4 +41,4 @@ class SayCommand extends BaseCommand {
     }
 }
 
-module.exports = SayCommand;
+export default SayCommand;

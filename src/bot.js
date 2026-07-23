@@ -20,12 +20,12 @@
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
-require("dotenv").config();
+import "dotenv/config";
 
-const Logger = require("./utils/logger.js");
+import Logger from "./utils/logger.js";
 if (!global.logger) global.logger = new Logger("System");
 
-const BotClient = require("./structures/BotClient.js");
+import BotClient from "./structures/BotClient.js";
 
 (async () => {
 	// In sharding mode, the token is injected by ShardingManager.
