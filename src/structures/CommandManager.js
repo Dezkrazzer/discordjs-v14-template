@@ -175,7 +175,7 @@ class CommandManager {
 			if (!devIds.includes(context.author.id)) {
 				await this.client.embedManager.replyToContext(
 					context,
-					"error",
+					"NO",
 					"This command is restricted to bot developers only.",
 					{ ephemeral: true, deleteAfter: 5000 }
 				);
@@ -189,7 +189,7 @@ class CommandManager {
 			const seconds = Math.ceil(remainingMs / 1000);
 			await this.client.embedManager.replyToContext(
 				context,
-				"warning",
+				"WARNING",
 				`Please wait! You can use \`${command.name}\` again in **${seconds}** second(s).`,
 				{ ephemeral: true, deleteAfter: remainingMs }
 			);
@@ -213,7 +213,7 @@ class CommandManager {
 				: "An error occurred while executing this command.";
 
 			try {
-				await this.client.embedManager.replyToContext(context, "error", errorMsg, { ephemeral: true });
+				await this.client.embedManager.replyToContext(context, "ERROR", errorMsg, { ephemeral: true });
 			} catch {
 				// Silently fail if unable to respond
 			}

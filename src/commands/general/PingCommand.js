@@ -23,7 +23,7 @@ class PingCommand extends BaseCommand {
 	async execute(ctx) {
 		const m = await ctx.client.embedManager.replyToContext(
 			ctx,
-			"info",
+			"LOADING",
 			"Please wait... we're pinging the bot's websocket latency."
 		);
 
@@ -31,7 +31,7 @@ class PingCommand extends BaseCommand {
 		const ws = ctx.client.ws.ping;
 
 		const embed = new Discord.EmbedBuilder()
-			.setColor(ctx.client.config.embedColors.PRIMARY)
+			.setColor(ctx.client.config.embedColors.INFO)
 			.addFields(
 				{
 					name: "🛜 Latency",

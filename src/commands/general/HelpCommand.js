@@ -36,7 +36,7 @@ class HelpCommand extends BaseCommand {
             const categories = fs.readdirSync("./src/commands");
 
             const embed = new Discord.EmbedBuilder()
-                .setColor(ctx.client.config.embedColors.PRIMARY)
+                .setColor(ctx.client.config.embedColors.INFO)
                 .setAuthor({
                     name: `Command List - ${ctx.client.commands.size} Commands`,
                     iconURL: ctx.client.user.avatarURL({ size: 4096 })
@@ -64,11 +64,11 @@ class HelpCommand extends BaseCommand {
         } else {
             const command = ctx.client.commandManager.resolveCommand(targetCommand);
             if (!command) {
-                return ctx.client.embedManager.replyToContext(ctx, "error", `Command \`${targetCommand}\` not found.`, { deleteAfter: 5000 });
+                return ctx.client.embedManager.replyToContext(ctx, "NO", `Command \`${targetCommand}\` not found.`, { deleteAfter: 5000 });
             }
 
             const embed = new Discord.EmbedBuilder()
-                .setColor(ctx.client.config.embedColors.PRIMARY)
+                .setColor(ctx.client.config.embedColors.INFO)
                 .setAuthor({
                     name: `Command Help - ${command.name}`,
                     iconURL: ctx.client.user.avatarURL({ size: 4096 })

@@ -38,7 +38,7 @@ class InteractionCreateEvent extends BaseEvent {
 			try {
 				await client.embedManager.reply(
 					interaction,
-					"error",
+					"NO",
 					"This command was not found.",
 					{ ephemeral: true }
 				);

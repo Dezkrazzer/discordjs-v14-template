@@ -22,19 +22,24 @@
 
 	// ─── Embed Colors ──────────────────────────────────────────────────────────
 	// Hex color codes used for embeds throughout the bot.
+	// Keys: YES (success), NO (user error), ERROR (system failure),
+	//       WARNING (alert), INFO (informational), LOADING (pending)
 	"EMBED_COLORS": {
-		"PRIMARY": "#5865F2",
-		"SUCCESS": "#57F287",
+		"YES": "#57F287",
+		"NO": "#ED4245",
+		"ERROR": "#ED4245",
 		"WARNING": "#FEE75C",
-		"ERROR": "#ED4245"
+		"INFO": "#5865F2",
+		"LOADING": "#5865F2"
 	},
 
 	// ─── Embed Emojis ─────────────────────────────────────────────────────────
 	// Emoji strings used in the EmbedManager for typed responses.
 	// You can use custom Discord emojis here (e.g., "<:check:123456789>").
 	"EMBED_EMOJIS": {
-		"SUCCESS": "✅",
-		"ERROR": "❌",
+		"YES": "✅",
+		"NO": "❌",
+		"ERROR": "⛔",
 		"WARNING": "⚠️",
 		"INFO": "ℹ️",
 		"LOADING": "⏳"

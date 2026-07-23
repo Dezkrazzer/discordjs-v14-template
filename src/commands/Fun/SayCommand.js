@@ -25,7 +25,7 @@ class SayCommand extends BaseCommand {
         if (!message) {
             return ctx.client.embedManager.replyToContext(
                 ctx,
-                "error",
+                "NO",
                 "You need to provide a message for the bot to say.",
                 { deleteAfter: 5000 }
             )

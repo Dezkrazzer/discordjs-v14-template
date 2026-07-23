@@ -82,7 +82,7 @@ class BotClient extends Client {
 		/** @type {EventManager} Handles event loading and registration */
 		this.eventManager = new EventManager(this);
 
-		/** @type {EmbedManager} Handles uniform embed responses (success, error, warning, etc.) */
+		/** @type {EmbedManager} Handles uniform embed responses (YES, NO, ERROR, WARNING, INFO, LOADING) */
 		this.embedManager = new EmbedManager();
 
 		// ── Multi-bot reference ───────────────────────────────────────────────

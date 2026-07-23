@@ -185,10 +185,12 @@ class ConfigManager {
 	/** @returns {Object} Embed color configuration */
 	get embedColors() {
 		return this.get("EMBED_COLORS", {
-			PRIMARY: "#5865F2",
-			SUCCESS: "#57F287",
-			WARNING: "#FEE75C",
+			YES: "#57F287",
+			NO: "#ED4245",
 			ERROR: "#ED4245",
+			WARNING: "#FEE75C",
+			INFO: "#5865F2",
+			LOADING: "#5865F2",
 		});
 	}
 

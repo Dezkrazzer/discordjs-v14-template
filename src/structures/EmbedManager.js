@@ -11,11 +11,12 @@ const ConfigManager = require("../config/ConfigManager.js");
  * is hardcoded inside this class.
  *
  * Response Types:
- *   - success   → Green embed with success emoji
- *   - error     → Red embed with error emoji
- *   - warning   → Yellow embed with warning emoji
- *   - info      → Blue/primary embed with info emoji
- *   - loading   → Primary embed with loading emoji
+ *   - YES      → Green embed  — Command executed successfully (expected output)
+ *   - NO       → Red embed    — User/client error (lacking permissions, invalid args)
+ *   - ERROR    → Red embed    — System failure, internal exception, or code error
+ *   - WARNING  → Yellow embed — Important alerts or notices requiring attention
+ *   - INFO     → Blue embed   — General informational messages
+ *   - LOADING  → Blue embed   — Pending, processing, or waiting state
  *
  * Key Methods:
  *   - send(channel, type, description, options)   → Sends to a TextChannel
@@ -33,8 +34,8 @@ const ConfigManager = require("../config/ConfigManager.js");
  *
  * Usage:
  *   const embed = new EmbedManager();
- *   await embed.reply(interaction, "success", "User banned successfully!");
- *   await embed.send(channel, "error", "Something went wrong.", { deleteAfter: 5000 });
+ *   await embed.reply(interaction, "YES", "User banned successfully!");
+ *   await embed.send(channel, "ERROR", "Something went wrong.", { deleteAfter: 5000 });
  *   await embed.sendTimeoutWarning(interaction, 30);
  * ═══════════════════════════════════════════════════════════════════════════════
  */
@@ -52,15 +53,17 @@ class EmbedManager {
 	 * Retrieves the embed color map from config.
 	 * Falls back to Discord brand colors if not configured.
 	 *
-	 * @returns {Object} Color map keyed by type (PRIMARY, SUCCESS, WARNING, ERROR)
+	 * @returns {Object} Color map keyed by type (YES, NO, ERROR, WARNING, INFO, LOADING)
 	 * @private
 	 */
 	_getColors() {
 		return this._config.get("EMBED_COLORS", {
-			PRIMARY: "#5865F2",
-			SUCCESS: "#57F287",
-			WARNING: "#FEE75C",
+			YES: "#57F287",
+			NO: "#ED4245",
 			ERROR: "#ED4245",
+			WARNING: "#FEE75C",
+			INFO: "#5865F2",
+			LOADING: "#5865F2",
 		});
 	}
 
@@ -68,13 +71,14 @@ class EmbedManager {
 	 * Retrieves the emoji map from config.
 	 * Falls back to Unicode emojis if not configured.
 	 *
-	 * @returns {Object} Emoji map keyed by type (SUCCESS, ERROR, WARNING, INFO, LOADING)
+	 * @returns {Object} Emoji map keyed by type (YES, NO, ERROR, WARNING, INFO, LOADING)
 	 * @private
 	 */
 	_getEmojis() {
 		return this._config.get("EMBED_EMOJIS", {
-			SUCCESS: "✅",
-			ERROR: "❌",
+			YES: "✅",
+			NO: "❌",
+			ERROR: "⛔",
 			WARNING: "⚠️",
 			INFO: "ℹ️",
 			LOADING: "⏳",
@@ -85,7 +89,7 @@ class EmbedManager {
 	 * Maps a response type string to its corresponding color and emoji
 	 * from the config.
 	 *
-	 * @param {string} type - One of: "success", "error", "warning", "info", "loading"
+	 * @param {'YES'|'NO'|'ERROR'|'WARNING'|'INFO'|'LOADING'} type - The response type
 	 * @returns {{ color: string, emoji: string }}
 	 * @private
 	 */
@@ -94,14 +98,15 @@ class EmbedManager {
 		const emojis = this._getEmojis();
 
 		const typeMap = {
-			success: { color: colors.SUCCESS, emoji: emojis.SUCCESS },
-			error: { color: colors.ERROR, emoji: emojis.ERROR },
-			warning: { color: colors.WARNING, emoji: emojis.WARNING },
-			info: { color: colors.PRIMARY, emoji: emojis.INFO },
-			loading: { color: colors.PRIMARY, emoji: emojis.LOADING },
+			YES: { color: colors.YES, emoji: emojis.YES },
+			NO: { color: colors.NO, emoji: emojis.NO },
+			ERROR: { color: colors.ERROR, emoji: emojis.ERROR },
+			WARNING: { color: colors.WARNING, emoji: emojis.WARNING },
+			INFO: { color: colors.INFO, emoji: emojis.INFO },
+			LOADING: { color: colors.LOADING, emoji: emojis.LOADING },
 		};
 
-		const resolved = typeMap[type.toLowerCase()];
+		const resolved = typeMap[type.toUpperCase()];
 
 		if (!resolved) {
 			throw new Error(
@@ -117,7 +122,7 @@ class EmbedManager {
 	 * Builds an EmbedBuilder from the given type and options.
 	 * This is the internal factory used by send() and reply().
 	 *
-	 * @param {string} type - Response type (success, error, warning, info, loading)
+	 * @param {'YES'|'NO'|'ERROR'|'WARNING'|'INFO'|'LOADING'} type - The response type
 	 * @param {string} description - The embed description body
 	 * @param {Object} [options={}] - Additional embed options
 	 * @param {string} [options.title] - Optional embed title
@@ -163,7 +168,7 @@ class EmbedManager {
 	 * Sends an embed to a TextChannel.
 	 *
 	 * @param {import('discord.js').TextBasedChannel} channel - The target channel
-	 * @param {string} type - Response type (success, error, warning, info, loading)
+	 * @param {'YES'|'NO'|'ERROR'|'WARNING'|'INFO'|'LOADING'} type - The response type
 	 * @param {string} description - The message body
 	 * @param {Object} [options={}] - Additional options
 	 * @param {number} [options.deleteAfter] - Auto-delete after N milliseconds
@@ -203,7 +208,7 @@ class EmbedManager {
 	 *   - Interaction objects (calls interaction.reply() or followUp() if already replied)
 	 *
 	 * @param {import('discord.js').Message|import('discord.js').Interaction} source - Message or Interaction
-	 * @param {string} type - Response type (success, error, warning, info, loading)
+	 * @param {'YES'|'NO'|'ERROR'|'WARNING'|'INFO'|'LOADING'} type - The response type
 	 * @param {string} description - The message body
 	 * @param {Object} [options={}] - Additional options
 	 * @param {number} [options.deleteAfter] - Auto-delete after N milliseconds
@@ -281,7 +286,7 @@ class EmbedManager {
 			`This action will expire in **${seconds}** second(s). ` +
 			"Please respond before it times out.";
 
-		return this.reply(source, "warning", options.message ?? defaultMessage, {
+		return this.reply(source, "WARNING", options.message ?? defaultMessage, {
 			title: `${emojis.WARNING} Timeout Warning`,
 			ephemeral: options.ephemeral ?? true,
 			// Auto-delete the warning after the timeout duration
@@ -297,7 +302,7 @@ class EmbedManager {
 	 * This is a convenience method for use inside command execute() methods.
 	 *
 	 * @param {import('./CommandContext')} ctx - The unified command context
-	 * @param {string} type - Response type (success, error, warning, info, loading)
+	 * @param {'YES'|'NO'|'ERROR'|'WARNING'|'INFO'|'LOADING'} type - The response type
 	 * @param {string} description - The message body
 	 * @param {Object} [options={}] - Additional options
 	 * @returns {Promise<import('discord.js').Message|import('discord.js').InteractionResponse>}

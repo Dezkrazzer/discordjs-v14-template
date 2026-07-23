@@ -40,7 +40,7 @@ class TemplateCommand extends BaseCommand {
 					.setDescription(
 						"Replace this message with the behavior you want for your new command."
 					)
-					.setColor(colors.PRIMARY),
+					.setColor(colors.INFO),
 		],
 		});
 	}

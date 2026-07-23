@@ -70,7 +70,7 @@ async function generateEmbed(ctx) {
             const totalBotsLogin = getTotalBotsLogin(ctx.client);
 
             const embed = new Discord.EmbedBuilder()
-                .setColor(ctx.client.config.embedColors.PRIMARY)
+                .setColor(ctx.client.config.embedColors.INFO)
                 .setAuthor({
                     name: `${ctx.client.user.username} Statistics`,
                     iconURL: ctx.client.user.avatarURL({ size: 4096 })

@@ -40,7 +40,7 @@ class EvalCommand extends BaseCommand {
 			if (!code) {
 				return await client.embedManager.replyToContext(
 					ctx,
-					"warning",
+					"WARNING",
 					"What is your **JavaScript Code**?",
 					{ deleteAfter: 5000 }
 				);
@@ -72,7 +72,7 @@ class EvalCommand extends BaseCommand {
 				const hastebinUrl = client.config.get("HASTEBIN_URL") || "https://bin.acronet.work";
 
 				const { data } = await axios.post(`${hastebinUrl}/documents`, output);
-				await client.embedManager.replyToContext(ctx, "success", "Code evaluated successfully! Output is too long to display here.", {
+				await client.embedManager.replyToContext(ctx, "YES", "Code evaluated successfully! Output is too long to display here.", {
 					components: [
 						{
 							type: 1,
@@ -91,7 +91,7 @@ class EvalCommand extends BaseCommand {
 				const embed = new Discord.EmbedBuilder()
 					.setTitle("Output")
 					.setDescription(`\`\`\`js\n${output}\n\`\`\``)
-					.setColor(ctx.client.config.embedColors.SUCCESS)
+					.setColor(ctx.client.config.embedColors.YES)
 					.setFooter({
 						text: `Requested by ${ctx.author.username}`,
 						iconURL: ctx.author.displayAvatarURL({ size: 4096, dynamic: true }),
