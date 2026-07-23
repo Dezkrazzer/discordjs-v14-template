@@ -31,18 +31,7 @@ class TemplateCommand extends BaseCommand {
 	 * @param {import('../../structures/CommandContext')} ctx
 	 */
 	async execute(ctx) {
-		const colors = ctx.client.config.embedColors;
-
-		await ctx.reply({
-			embeds: [
-				new EmbedBuilder()
-					.setTitle("Template Command")
-					.setDescription(
-						"Replace this message with the behavior you want for your new command."
-					)
-					.setColor(colors.INFO),
-		],
-		});
+		// replace with your command logic
 	}
 }
 
