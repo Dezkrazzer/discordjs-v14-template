@@ -1,5 +1,5 @@
+import * as Discord from "discord.js";
 import BaseCommand from "../../structures/BaseCommand.js";
-import Discord from "discord.js";
 
 class PingCommand extends BaseCommand {
 	constructor(client) {
@@ -24,7 +24,7 @@ class PingCommand extends BaseCommand {
 		const m = await ctx.client.embedManager.replyToContext(
 			ctx,
 			"LOADING",
-			"Please wait... we're pinging the bot's websocket latency."
+			"Please wait... we're pinging the bot's websocket latency.",
 		);
 
 		const latency = m.createdTimestamp - ctx.createdTimestamp;
@@ -36,13 +36,13 @@ class PingCommand extends BaseCommand {
 				{
 					name: "🛜 Latency",
 					value: `**\`${latency} ms\`**`,
-					inline: true
+					inline: true,
 				},
 				{
 					name: "📶 WebSocket",
 					value: `**\`${ws} ms\`**`,
-					inline: true
-				}
+					inline: true,
+				},
 			)
 			.setFooter({
 				text: `${ctx.client.user.tag} Ping`,
@@ -53,7 +53,6 @@ class PingCommand extends BaseCommand {
 		setTimeout(() => {
 			m.edit({ embeds: [embed] });
 		}, 2000);
-
 	}
 }
 
