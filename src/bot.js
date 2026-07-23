@@ -23,6 +23,7 @@
 import "dotenv/config";
 
 import Logger from "./utils/logger.js";
+
 if (!global.logger) global.logger = new Logger("System");
 
 import BotClient from "./structures/BotClient.js";
