@@ -1,9 +1,9 @@
-const { Client, GatewayIntentBits, Options, Collection } = require("discord.js");
-const ConfigManager = require("../config/ConfigManager.js");
-const CommandManager = require("./CommandManager.js");
-const EventManager = require("./EventManager.js");
-const EmbedManager = require("./EmbedManager.js");
-const Logger = require("../utils/logger.js");
+import { Client, GatewayIntentBits, Options, Collection } from "discord.js";
+import ConfigManager from "../config/ConfigManager.js";
+import CommandManager from "./CommandManager.js";
+import EventManager from "./EventManager.js";
+import EmbedManager from "./EmbedManager.js";
+import Logger from "../utils/logger.js";
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
@@ -138,4 +138,4 @@ class BotClient extends Client {
 	}
 }
 
-module.exports = BotClient;
+export default BotClient;

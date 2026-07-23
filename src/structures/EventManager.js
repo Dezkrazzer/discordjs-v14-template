@@ -1,6 +1,10 @@
-const fs = require("node:fs");
-const path = require("node:path");
-const BaseEvent = require("./BaseEvent.js");
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import BaseEvent from "./BaseEvent.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
@@ -32,7 +36,7 @@ class EventManager {
 	 * Loads all event files from src/events/ and registers them on the client.
 	 *
 	 * Each file should export a class extending BaseEvent, e.g.:
-	 *   module.exports = class ReadyEvent extends BaseEvent { ... }
+	 *   export default class ReadyEvent extends BaseEvent { ... }
 	 *
 	 * @returns {Promise<void>}
 	 */
@@ -55,7 +59,7 @@ class EventManager {
 		for (const file of files) {
 			try {
 				const filePath = path.join(eventsDir, file);
-				const EventClass = require(filePath);
+				const { default: EventClass } = await import(pathToFileURL(filePath).href);
 
 				// ── Validate export is a constructor ───────────────────────────
 				if (typeof EventClass !== "function") {
@@ -107,4 +111,4 @@ class EventManager {
 	}
 }
 
-module.exports = EventManager;
+export default EventManager;

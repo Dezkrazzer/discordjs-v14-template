@@ -1,6 +1,6 @@
-const chalk = require("chalk");
-const momentTz = require("moment-timezone");
-const ConfigManager = require("../config/ConfigManager.js");
+import chalk from "chalk";
+import momentTz from "moment-timezone";
+import ConfigManager from "../config/ConfigManager.js";
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
@@ -129,4 +129,4 @@ class Logger {
 	}
 }
 
-module.exports = Logger;
+export default Logger;

@@ -1,5 +1,5 @@
-const BaseEvent = require("../structures/BaseEvent.js");
-const CommandContext = require("../structures/CommandContext.js");
+import BaseEvent from "../structures/BaseEvent.js";
+import CommandContext from "../structures/CommandContext.js";
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
@@ -57,4 +57,4 @@ class InteractionCreateEvent extends BaseEvent {
 	}
 }
 
-module.exports = InteractionCreateEvent;
+export default InteractionCreateEvent;

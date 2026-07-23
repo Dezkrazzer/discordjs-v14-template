@@ -1,5 +1,5 @@
-const { EmbedBuilder, MessageFlags } = require("discord.js");
-const ConfigManager = require("../config/ConfigManager.js");
+import { EmbedBuilder, MessageFlags } from "discord.js";
+import ConfigManager from "../config/ConfigManager.js";
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
@@ -312,4 +312,4 @@ class EmbedManager {
 	}
 }
 
-module.exports = EmbedManager;
+export default EmbedManager;

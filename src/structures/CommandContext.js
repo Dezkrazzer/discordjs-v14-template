@@ -226,4 +226,4 @@ class CommandContext {
 	}
 }
 
-module.exports = CommandContext;
+export default CommandContext;
