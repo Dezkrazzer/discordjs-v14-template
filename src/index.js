@@ -27,15 +27,15 @@
  *
  * ═══════════════════════════════════════════════════════════════════════════════
  */
-
-import "dotenv/config";
-import Logger from "./utils/logger.js";
-global.logger = new Logger("System");
-import "./server.js";
-
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import ConfigManager from "./config/ConfigManager.js";
+import Logger from "./utils/logger.js";
+import "dotenv/config";
+
+await import("./server.js");
+
+global.logger = new Logger("System");
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
